@@ -15,17 +15,15 @@ public class User {
     /**
      * 获取全名
      *
-     * @param firstName
-     * @param lastName
      * @return
      */
-    public String getFullName(String firstName, String lastName) {
+    public String getFullName() {
         StringBuilder sb = new StringBuilder();
         if (!TextUtils.isEmpty(firstName)) {
             sb.append(firstName);
         }
         if (!TextUtils.isEmpty(lastName)) {
-            sb.append(" " + lastName);
+            sb.append("." + lastName);
         }
         return sb.toString();
     }

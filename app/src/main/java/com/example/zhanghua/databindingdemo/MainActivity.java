@@ -20,5 +20,11 @@ public class MainActivity extends AppCompatActivity {
         user.isShowPhone=true;
         user.phone="001-043234";
         binding.setUser(user);
+
+        // bind method and click listener
+        MyHandler handler = new MyHandler();
+        MyTask task = new MyTask(this);
+        binding.setMyHandler(handler);
+        binding.setMyTask(task);
     }
 }

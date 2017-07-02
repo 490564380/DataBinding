@@ -3,17 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <!--improt class for View.VISIBLE View.GONE-->
+        <import type="android.view.View" />
 
         <variable
             name="user"
             type="com.example.zhanghua.databindingdemo.User"></variable>
+
+        <variable
+            name="myHandler"
+            type="com.example.zhanghua.databindingdemo.MyHandler"></variable>
+
+        <variable
+            name="myTask"
+            type="com.example.zhanghua.databindingdemo.MyTask"></variable>
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <!--1. show firstName-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,9 +37,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zhang" />
+                android:text="@{user.firstName}" />
         </LinearLayout>
-
+        <!--2. show phone-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,9 +53,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="133 4444 5555" />
+                android:text="@{user.phone}" />
         </LinearLayout>
-
+        <!--3. method-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,17 +69,20 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zhang Huakai" />
+                android:text="@{user.getFullName()}"
+                android:visibility="@{user.isShowPhone?View.VISIBLE:View.GONE}" />
         </LinearLayout>
-
+        <!--lambda no need to set view param for "showTost(View view)"-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{myHandler::showTost}"
             android:text="show toast" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{()->myHandler.onEventListenerExecute(myTask)}"
             android:text="run Task" />
 
     </LinearLayout>
